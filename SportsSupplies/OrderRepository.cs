@@ -6,7 +6,7 @@ using SportsSupplies.Models;
 
 namespace SportsSupplies
 {
-    public class OrderRepository : IOrderRepository
+    public class OrderRepository
     {
         private readonly IDbConnection _conn;
 
@@ -21,7 +21,6 @@ namespace SportsSupplies
                 new { id = product.ProductID });
         }
 
-        // IS THIS WRONG - ORDER / PRODUCT
         public IEnumerable<Order> GetAllProducts()
         {
             return _conn.Query<Order>("SELECT * FROM orderProducts;");
@@ -29,16 +28,16 @@ namespace SportsSupplies
 
         //public double GetTotal()
         //{
-        //    _conn.Query<Order>("SELECT SUM(Price) FROM orderProducts;");
+        //    return _conn.Query<Order>("SELECT SUM(Price) FROM orderProducts WHERE OrderID = @id;", new {id = Order.);
         //}
 
         public void InsertProducts(Order order)
         {
             foreach(var product in order.Products)
             {
-                _conn.Execute("INSERT INTO orderProducts (productID, productName, price, categoryID, orderID) " +
-                    "VALUES (@pID, @pName, @price, @catID, @orderID);",
-                    new { pID = product.ProductID, pName = product.Name, price = product.Price, catID = product.CategoryID, orderID = order.OrderID });
+                _conn.Execute("INSERT INTO orderProducts (productID, productName, price, orderID) " +
+                    "VALUES (@pID, @pName, @price, @orderID);",
+                    new { pID = product.ProductID, pName = product.Name, price = product.Price, orderID = order.OrderID });
             }
         }
 

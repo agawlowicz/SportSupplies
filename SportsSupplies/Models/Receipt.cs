@@ -17,7 +17,6 @@ namespace SportsSupplies.Models
         }
 
         public List<Product> Products { get; set; }
-
         public Guid OrderID { get; set; }
     }
 }

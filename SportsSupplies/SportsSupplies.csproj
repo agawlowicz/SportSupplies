@@ -19,11 +19,11 @@
   <ItemGroup>
     <None Remove="Dapper" />
     <None Remove="MySql.Data" />
-    <None Remove="Views\Product\" />
     <None Remove="Views\Cart\" />
+    <None Remove="Views\Receipt\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Product\" />
     <Folder Include="Views\Order\" />
+    <Folder Include="Views\Receipt\" />
   </ItemGroup>
 </Project>

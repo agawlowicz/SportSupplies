@@ -6,7 +6,7 @@ using Dapper;
 
 namespace SportsSupplies
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository
     {
         private readonly IDbConnection _conn;
 

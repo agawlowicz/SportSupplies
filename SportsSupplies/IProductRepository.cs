@@ -10,8 +10,7 @@ namespace SportsSupplies
         // Get all products to display
         public IEnumerable<Product> GetAllProducts();
 
-        // View one product at a time
-        public Product GetProduct(int id);
+        public Product Find(int productID);
 
     }
 }

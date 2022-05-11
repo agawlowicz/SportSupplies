@@ -2,26 +2,29 @@
 
 <h3>Order: @Model.OrderID</h3>
 
-<table class="table">
-    <tr>
-        <th>ProductID</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>CategoryID</th>
-        <th>Image</th>
-    </tr>
-    @foreach(var product in Model.Products)
-    {
-    <tr>
-        <td><a href=/Product/ViewProduct/@product.ProductID>@product.ProductID</a></td>
-        <td>@product.ProductID</td>
-        <td>@product.Name</td>
-        <td>@product.Price</td>
-        <td>@product.CategoryID</td>
-        <td>@product.Image</td>
-    </tr>
-    }
-</table>
+@using (Html.BeginForm("AddProduct", "Order", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.OrderID)
+
+    <table class="table">
+        @foreach (var product in ViewBag.Products)
+        {
+            <tr>
+                <td>
+                    <button type="submit"
+                            name="ProductID"
+                            value="@product.ProductID">
+                        @product.Name
+                        @product.Price
+                    </button>
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+
+
 
 <h2>Subtotal: @Model.Subtotal</h2>
 <h3>Total: @Model.Total</h3>

@@ -5,19 +5,20 @@ namespace SportsSupplies.Models
 {
     public class Order
     {
+        public Order()
+        {
+            Products = new List<Product>();
+            OrderID = Guid.NewGuid();
+        }
+
         public List<Product> Products { get; set; }
         public Guid OrderID { get; set; }
         public double Subtotal { get; set; }
         public double Total { get; set; }
+        public Receipt Receipt { get; set; }
 
-        //generate new ID number and add product to list of order products
-        //Set property OrderID and update Products property then call subtotal method
         public void Add(Product product)
         {
-            if (Products.Count == 0)
-            {
-                OrderID = Guid.NewGuid();
-            }
             Products.Add(product);
             CalculateSubtotal();
         }
@@ -35,13 +36,6 @@ namespace SportsSupplies.Models
             
         }
 
-        //remove product from Products and call subtotal method
-        public void Remove(Product product)
-        {
-            Products.Remove(product);
-            CalculateSubtotal();
-        }
-
         //calculate total
         public void CalculateTotal()
         {
@@ -54,22 +48,31 @@ namespace SportsSupplies.Models
             Total = total * 1.09;
         }
 
-        //public void SubmitOrder()
-        //{
+        public void GenerateReceipt()
+        {
+            Receipt = new Receipt(Products, OrderID);
+        }
 
-        //}
+        //remove product from Products and call subtotal method
+        public void Remove(Product product)
+        {
+            foreach (var p in Products)
+            {
+                if(product.ProductID == p.ProductID)
+                {
+                    Products.Remove(product);
 
+                    Subtotal -= product.Price;
 
-        //public IEnumerable<Order> GenerateReciept()
+                    break;
+                }
+            }
+        }
 
-        //generate reciept method
-        //set var total = Subtotal
-        //Total = total
-        //public IEnumerable<Product>
-
-        // submit method, add all products and calculate total
-
-        //AddToCart method
-        //in model class, add button
+        public void SubmitOrder()
+        {
+            GenerateReceipt();
+            CalculateTotal();
+        }
     }
 }

@@ -7,11 +7,12 @@ namespace SportsSupplies
     public interface IOrderRepository
     {
         //public double GetTotal();
-        public IEnumerable<Order> GetAllProducts();
-        public void InsertProducts(Order order);
-        //public void DeleteProduct(int id);
-        public void DeleteProduct(Product product);
-        public void SubmitOrder(Order order);
+        //public void InsertProducts(Order order);
+        public IEnumerable<Order> GetAllOrders();
+        //public void DeleteProduct(Product product);
+        public void UpdateOrder(Order order);
+        public Order Find(Guid orderID);
+        public void CreateOrder(Order order);
 
     }
 }

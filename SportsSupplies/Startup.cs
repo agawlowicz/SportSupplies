@@ -26,16 +26,16 @@ namespace SportsSupplies
         public void ConfigureServices(IServiceCollection services)
         {
             // Inversion of Control
-            services.AddScoped<IDbConnection>((s) =>
-           {
-               IDbConnection conn = new MySqlConnection(Configuration.GetConnectionString("sportSupplies"));
-               conn.Open();
-               return conn;
-           });
+           // services.AddScoped<IDbConnection>((s) =>
+           //{
+           //    IDbConnection conn = new MySqlConnection(Configuration.GetConnectionString("sportSupplies"));
+           //    conn.Open();
+           //    return conn;
+           //});
 
-            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductRepository, MockProductRepository>();
 
-            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderRepository, MockOrderRepository>();
 
             services.AddControllersWithViews();
         }

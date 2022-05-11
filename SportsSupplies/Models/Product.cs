@@ -4,14 +4,15 @@ namespace SportsSupplies.Models
     //Product Model
     public class Product
     {
-        public Product()
+        public Product(int productID, string name, double price)
         {
+            ProductID = ProductID;
+            Name = name;
+            Price = price;
         }
 
         public int ProductID { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
-        public int CategoryID { get; set; }
-        public string Image { get; set; }
     }
 }
