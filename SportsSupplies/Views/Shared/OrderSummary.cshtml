@@ -1,0 +1,23 @@
+﻿@model Order
+
+<h3>Order # @Model.OrderID </h3>
+
+@Html.HiddenFor(x => x.OrderID)
+
+<table class="table">
+    <tr>
+        <th>Product ID</th>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+    @foreach (Product p in Model.Products)
+    {
+        <tr>
+            <td>@p.ProductID</td>
+            <td>@p.Name</td>
+            <td>$@string.Format("{0:#.00}", p.Price)</td>
+        </tr>
+    }
+</table>
+
+<h3></h3>

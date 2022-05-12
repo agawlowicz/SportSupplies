@@ -6,7 +6,7 @@ namespace SportsSupplies.Models
     {
         public Product(int productID, string name, double price)
         {
-            ProductID = ProductID;
+            ProductID = productID;
             Name = name;
             Price = price;
         }

@@ -41,10 +41,10 @@ namespace SportsSupplies.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddProduct(Order orderFromForm, string productID)
+        public IActionResult AddProduct(Order orderFromForm, int productID)
         {
             var order = repo.Find(orderFromForm.OrderID);
-            var product = repo2.Find(Convert.ToInt32(productID));
+            var product = repo2.Find(productID);
 
             order.Add(product);
             repo.UpdateOrder(order);
@@ -53,9 +53,9 @@ namespace SportsSupplies.Controllers
 
         }
 
-        //public IActionResult ViewOrder()
+        //public IActionResult GenerateReceipt()
         //{
-
+        //    repo.
         //}
     }
 }

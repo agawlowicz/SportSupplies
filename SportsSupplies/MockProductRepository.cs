@@ -8,7 +8,7 @@ namespace SportsSupplies
     {
         private static Dictionary<int, Product> _products = new Dictionary<int, Product>();
 
-        public MockProductRepository()
+        static MockProductRepository()
         {
             _products.Add(1234, new Product(1234, "Soccerball", 19.99));
             _products.Add(456, new Product(456, "Basketball", 16.99));

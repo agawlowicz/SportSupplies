@@ -25,6 +25,9 @@
 
 
 
+@Html.HiddenFor(x => x.OrderID)
+<div>
+    @await Html.PartialAsync("OrderSummary", Model)
+</div>
 
-<h2>Subtotal: @Model.Subtotal</h2>
-<h3>Total: @Model.Total</h3>
+<h2>Subtotal: $@string.Format("{0:#.00}", Model.Subtotal)</h2>
