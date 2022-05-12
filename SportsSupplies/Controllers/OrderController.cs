@@ -54,7 +54,7 @@ namespace SportsSupplies.Controllers
         }
 
         [HttpPost]
-        [Route("{GenerateReceipt}")]
+        [Route("GenerateReceipt")]
         public IActionResult GenerateReceipt(Order orderFromForm)
         {
             var order = repo.Find(orderFromForm.OrderID);
@@ -74,7 +74,7 @@ namespace SportsSupplies.Controllers
         }
 
         [HttpPost]
-        [Route("{Remove-From-Cart}")]
+        [Route("RemoveFromCart")]
         public IActionResult RemoveFromCart(Order orderFromForm, int productID)
         {
             var order = repo.Find(orderFromForm.OrderID);
