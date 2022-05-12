@@ -53,9 +53,35 @@ namespace SportsSupplies.Controllers
 
         }
 
-        //public IActionResult GenerateReceipt()
-        //{
-        //    repo.
-        //}
+        [HttpPost]
+        [Route("{GenerateReceipt}")]
+        public IActionResult GenerateReceipt(Order orderFromForm)
+        {
+            var order = repo.Find(orderFromForm.OrderID);
+            order.SubmitOrder();
+            repo.UpdateOrder(order);
+
+            return Redirect($"{order.OrderID}/receipt");
+
+        }
+
+        [Route("{OrderID}/Receipt")]
+        public IActionResult Receipt(Guid orderID)
+        {
+            var order = repo.Find(orderID);
+
+            return View(order);
+        }
+
+        [HttpPost]
+        [Route("{Remove-From-Cart}")]
+        public IActionResult RemoveFromCart(Order orderFromForm, int productID)
+        {
+            var order = repo.Find(orderFromForm.OrderID);
+            order.Remove(productID);
+            repo.UpdateOrder(order);
+
+            return Redirect($"{order.OrderID}");
+        }
     }
 }

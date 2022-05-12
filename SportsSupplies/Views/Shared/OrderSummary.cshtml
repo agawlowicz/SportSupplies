@@ -2,22 +2,30 @@
 
 <h3>Order # @Model.OrderID </h3>
 
-@Html.HiddenFor(x => x.OrderID)
+@using (Html.BeginForm("Remove-From-Cart", "Order", FormMethod.Post))
+{
 
-<table class="table">
-    <tr>
-        <th>Product ID</th>
-        <th>Name</th>
-        <th>Price</th>
-    </tr>
-    @foreach (Product p in Model.Products)
-    {
+
+    @Html.HiddenFor(x => x.OrderID)
+
+    <table class="table">
         <tr>
-            <td>@p.ProductID</td>
-            <td>@p.Name</td>
-            <td>$@string.Format("{0:#.00}", p.Price)</td>
+            <th>Product ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Remove From Cart</th>
         </tr>
-    }
-</table>
-
-<h3></h3>
+        @foreach (Product p in Model.Products)
+        {
+            <tr>
+                <td>@p.ProductID</td>
+                <td>@p.Name</td>
+                <td>$@string.Format("{0:#.00}", p.Price)</td>
+                <td><button type="submit"
+                            name="ProductID"
+                            value="@p.ProductID">X</button></td>
+            </tr>
+            
+        }
+    </table>
+}

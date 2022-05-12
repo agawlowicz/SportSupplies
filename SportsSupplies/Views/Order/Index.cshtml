@@ -23,7 +23,12 @@
     </table>
 }
 
-
+@using (Html.BeginForm("GenerateReceipt", "Order", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.OrderID)
+    <button type="submit"
+            class="submit button">Submit Order</button>
+}
 
 @Html.HiddenFor(x => x.OrderID)
 <div>

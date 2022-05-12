@@ -54,15 +54,15 @@ namespace SportsSupplies.Models
         }
 
         //remove product from Products and call subtotal method
-        public void Remove(Product product)
+        public void Remove(int productID)
         {
             foreach (var p in Products)
             {
-                if(product.ProductID == p.ProductID)
+                if(p.ProductID == productID)
                 {
-                    Products.Remove(product);
+                    Products.Remove(p);
 
-                    Subtotal -= product.Price;
+                    Subtotal -= p.Price;
 
                     break;
                 }

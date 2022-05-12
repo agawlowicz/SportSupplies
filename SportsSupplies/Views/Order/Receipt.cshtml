@@ -1,0 +1,19 @@
+﻿@model Order
+
+<h2>Order: @Model.Receipt.OrderID</h2>
+
+<table class="table">
+    @foreach (Product product in Model.Products)
+    {
+        <tr>
+            <td>
+                @product.ProductID
+                @product.Name
+                @product.Price
+            </td>
+        </tr>
+    }
+</table>
+
+<h2>Subtotal: $@string.Format("{0:#.00}", Model.Subtotal)</h2>
+<h2>Total: $@string.Format("{0:#.00}", Model.Total)</h2>
